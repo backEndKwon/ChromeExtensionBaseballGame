@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Let's Baseball Game</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div id="game-container">
+      <h1>Let's Baseball Game</h1>
+
+      <div id="game">
+        <label for="userInput">👇Enter Your Answer👇</label>
+        <input type="text" id="userInput" />
+        <!-- 전구 아이콘 -->
+        <span id="lightbulb-icon" style="font-size: 20px; cursor: pointer"
+          >💡</span
+        >
+        <div id="result"></div>
+        <div class="scoreboard">
+          <div id="strike">Strike: 0</div>
+          <div id="ball">Ball: 0</div>
+          <div id="out">Out: 0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 모달 -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModalButton">&times;</span>
+        <!-- 외부 파일 로드 -->
+        <object
+          type="text/html"
+          data="game_description.html"
+          width="100%"
+          height="100%"
+        ></object>
+      </div>
+    </div>
+    <script src="index.js"></script>
+    <script>
+      // 모달 닫기 버튼에 이벤트 리스너 추가
+      document.getElementById("closeModalButton").addEventListener("click", closeModal);
+      </script>
+  </body>
+</html>
