@@ -15,6 +15,24 @@
 //   link.href = chrome.runtime.getURL("styles.css");
 //   (document.head || document.documentElement).appendChild(link);
 
+document.addEventListener("DOMContentLoaded", function () {
+  fetch("index.html")
+    .then((response) => response.text())
+    .then((html) => {
+      let div = document.createElement("div");
+      div.innerHTML = html.trim();
+      document.body.appendChild(div.firstChild);
+    })
+    .catch((error) => {
+      console.warn(error);
+    });
+
+  let link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = "styles.css";
+  (document.head || document.documentElement).appendChild(link);
+});
+
 // getRandomNumber, compareNumber 함수 등 기존의 게임 로직을 가져옵니다.
 function getRandomNumber() {
   let result = [];
@@ -35,23 +53,25 @@ function compareNumber(RandomNumber) {
   console.log("👉 ~ userNumber:", userNumber);
   //userNumber가 중복된 숫자가 있을 경우도 예외처리
   if (Number(userNumber[0]) === 0) {
-    alert("0으로 시작하는 숫자는 입력할 수 없습니다. 다시 입력해주세요.");
+    alert(
+      "Numbers starting with 0 are not allowed. Please enter a valid number."
+    );
     return;
   }
   if (userNumber.length === 3 && [...new Set(userNumber)].length !== 3) {
-    alert("중복된 숫자가 있습니다. 다시 입력해주세요.");
+    alert("Duplicate numbers found. Please enter a valid number.");
     return;
   }
   if (userNumber.trim() === "") {
-    alert("빈칸을 입력하셨습니다. 숫자를 입력해주세요.");
+    alert("You entered a blank space. Please enter a number.");
     return;
   }
   if (isNaN(userNumber)) {
-    alert("숫자만 입력해주세요.");
+    alert("Please enter only numbers.");
     return;
   }
   if (userNumber.length !== 3) {
-    alert("3자리 숫자를 입력해주세요.");
+    alert("Please enter a 3-digit number.");
     return;
   }
 
@@ -149,6 +169,11 @@ window.onclick = function (event) {
     closeModal();
   }
 };
+
+document
+  .getElementById("closeModalButton")
+  .addEventListener("click", closeModal);
+
 // });
 
 // let link = document.createElement("link");

@@ -10,8 +10,10 @@
     }
   },
   "permissions": ["activeTab"],
-  "action": {
-    "default_icon": "128.png",
-    "default_popup": "index.html"
-  }
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["index.js"]
+    }
+  ]
 }
