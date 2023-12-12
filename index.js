@@ -81,14 +81,25 @@ function compareNumber(RandomNumber) {
   let out = 0; // 3out
 
   userNumber = userNumber.split("").map((x) => parseInt(x));
+  // for (let i = 0; i < 3; i++) {
+  //   for (let j = 0; j < 3; j++) {
+  //     if (userNumber[i] === RandomNumber[j]) {
+  //       if (i === j) {
+  //         strike++;
+  //       } else {
+  //         ball++;
+  //       }
+  //     }
+  //   }
+  // }
   for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      if (userNumber[i] === RandomNumber[j]) {
-        if (i === j) {
-          strike++;
-        } else {
-          ball++;
-        }
+    const index = RandomNumber.indexOf(userNumber[i]);
+
+    if (index !== -1) {
+      if (index === i) {
+        strike++;
+      } else {
+        ball++;
       }
     }
   }
